@@ -3,3 +3,6 @@
 *scratch/
 *__pycache__
 .vscode/
+dist/
+build/
+pySpeakNG.egg-info/
