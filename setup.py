@@ -4,6 +4,7 @@ from setuptools import setup, find_packages
 
 HERE = Path(__file__).parent.resolve()
 
+d = 'A thin wrapper around eSpeak-NG for off-line text-to-speech synthesis.'
 long_description = (HERE/'README.md').read_text(encoding='utf-8')
 
 setup(
@@ -11,7 +12,7 @@ setup(
     version='0.1.0',
     author='David E. Lambert',
     author_email='david@davidelambert.com',
-    description='A thin wrapper around eSpeak-NG for off-line text-to-speech synthesis.',
+    description=d,
     long_description=long_description,
     long_description_content_type='text/markdown',
     license='MIT',
