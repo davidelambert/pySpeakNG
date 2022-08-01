@@ -21,7 +21,6 @@
 # CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
 # TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 # SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
 """Main package module.
 
 Functions:
@@ -49,26 +48,29 @@ with open(HERE/'langs.json', 'r') as f:
 
 def speak(text: str, language='en-us', voice='f1', pitch=50,
           speed=125, gap=10, amplitude=50, fp=None) -> None:
-    """A thin wrapper around the eSpeak-NG speech synthesizer.
+    """Play or save text-to-speech using off-line speech synthesis.
 
-    Args:
-        text (str, required): A string for eSpeak-NG to synthesize.
-        language (str, optional): Language code for synth voice.
-            Defaults to 'en-us'. See LANGUAGES for options.
-        voice (str, optional): Synth voice model. Defaults to 'f1'.
-            See VOICES for options.
-        pitch (int, optional): Pitch adjustment, 0-99. The default
-            of 50 is the default pitch for the selected voice.
-        speed (int, optional): 25-250 words per minute.
-            Defaults to 125.
-        word_gap (int, optional): Pause between words, in units of
-            10ms at the default speed. Defaults to 10 as 175wpm.
-        amplitude (int, optional): 0-100. Defaults to 60. Don't blow
-            your speakers.
-        fp (path-like, optional): Location to save .wav file output of
-            the synthesized speech. When present, audio is not played.
+    :param text:  A string for eSpeak-NG to synthesize.
+    :type text: str
+    :param language: Language code for synth voice, defaults to 'en-us'.
+        See LANGUAGES for options.
+    :type language: str, optional
+    :param voice: Synth voice model, defaults to 'f1'.
+    :type voice: str, optional
+    :param pitch: Pitch adjustment, 0-99. The default of 50 is the
+        default pitch for the selected voice.
+    :type pitch: int, optional
+    :param speed: 25-250 words per minute, defaults to 125.
+    :type speed: int, optional
+    :param gap: Pause between words, in units of 10ms at the default
+        speed. Defaults to 10 as 175wpm.
+    :type gap: int, optional
+    :param amplitude: 0-100, defaults to 50. Don't blow a speaker.
+    :type amplitude: int, optional
+    :param fp: Location to save .wav file output of the synthesized
+        speech, defaults to None. When present, audio is not played.
+    :type fp: path-like, optional
     """
-
     if fp:
         command = shlex.split(
             "espeak-ng -v{}+{} -p {} -s {} -g {} -a {} -w {} \"[[{}]]\""
