@@ -1,0 +1,5 @@
+.python-version
+*ref/
+*scratch/
+*__pycache__
+.vscode/
