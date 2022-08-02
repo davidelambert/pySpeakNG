@@ -32,6 +32,7 @@ Attributes:
     LANGUAGES (dict): eSPeak-NG language codes and descriptions.
 """
 
+import sys
 import json
 import subprocess
 import shlex
@@ -72,13 +73,17 @@ def speak(text: str, language='en-us', voice='f1', pitch=50,
     :type fp: path-like, optional
     """
     if fp:
-        command = shlex.split(
-            "espeak-ng -v{}+{} -p {} -s {} -g {} -a {} -w {} \"[[{}]]\""
-            .format(language, voice, pitch, speed, gap, amplitude, fp, text)
-        )
+        try:
+            fp = str(Path(fp).absolute())
+        except Exception as e:
+            print(e)
+            print("ERROR: 'fp' must be a valid path-like object or string.")
     else:
-        command = shlex.split(
-            "espeak-ng -v{}+{} -p {} -s {} -g {} -a {} \"[[{}]]\""
-            .format(language, voice, pitch, speed, gap, amplitude, text)
-        )
-        subprocess.run(command)
+        fp = ' '
+
+    command = shlex.split(
+        "espeak-ng -v{}+{} -p {} -s {} -g {} -a {} {} \"[[{}]]\""
+        .format(language, voice, pitch, speed, gap, amplitude, fp, text)
+    )
+
+    subprocess.run(command)
