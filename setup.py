@@ -9,7 +9,7 @@ long_description = (HERE/'README.md').read_text(encoding='utf-8')
 
 setup(
     name='pySpeakNG',
-    version='0.1.1',
+    version='0.1.2',
     author='David E. Lambert',
     author_email='david@davidelambert.com',
     description=d,

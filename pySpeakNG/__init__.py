@@ -26,4 +26,4 @@
 
 from .pySpeakNG import speak, VOICES, LANGUAGES
 
-__version__ = '0.1.1'
+__version__ = '0.1.2'
