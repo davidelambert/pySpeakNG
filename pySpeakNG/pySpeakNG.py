@@ -32,7 +32,6 @@ Attributes:
     LANGUAGES (dict): eSPeak-NG language codes and descriptions.
 """
 
-import sys
 import json
 import subprocess
 import shlex
@@ -72,6 +71,34 @@ def speak(text: str, language='en-us', voice='f1', pitch=50,
         speech, defaults to None. When present, audio is not played.
     :type fp: path-like, optional
     """
+    if language not in list(LANGUAGES):
+        print("ERROR: 'language' must be a valid eSpeak-NG language key.")
+        print("See pySpeakNG.LANGUAGES for valid keys and descriptions.")
+
+    if voice not in VOICES:
+        print("ERROR: 'voice' must be a valid eSpeak-NG voice name.")
+        print("See pySpeakNG.VOICES for options.")
+
+    if pitch < 0:
+        pitch = 0
+    elif pitch > 99:
+        pitch = 99
+
+    if speed < 25:
+        speed = 25
+    elif speed > 250:
+        speed = 250
+
+    if gap < 0:
+        gap = 10
+    elif gap > 40:
+        gap = 10
+
+    if amplitude < 0:
+        amplitude = 50
+    elif amplitude > 100:
+        amplitude = 50
+
     if fp:
         try:
             fp = str(Path(fp).absolute())
