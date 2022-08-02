@@ -82,7 +82,7 @@ def speak(text: str, language='en-us', voice='f1', pitch=50,
         fp = ' '
 
     command = shlex.split(
-        "espeak-ng -v{}+{} -p {} -s {} -g {} -a {} {} \"[[{}]]\""
+        "espeak-ng -v{}+{} -p {} -s {} -g {} -a {} {} \"{}\""
         .format(language, voice, pitch, speed, gap, amplitude, fp, text)
     )
 
